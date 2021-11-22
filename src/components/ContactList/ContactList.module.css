@@ -1,0 +1,13 @@
+.loading {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+}
+
+.wrapper {
+  padding: 10px;
+  padding-left: 20px;
+  border: 1px gray solid;
+  position: relative;
+  max-width: 390px;
+}
