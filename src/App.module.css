@@ -1,0 +1,14 @@
+.mainHeader {
+  font-weight: 700;
+  background-color: lightblue;
+  color: rgb(1, 107, 107);
+}
+
+.addContact {
+  margin-bottom: 20px;
+}
+
+.parentWrapper {
+  border: 2px lightblue solid;
+  border-radius: 5px;
+}

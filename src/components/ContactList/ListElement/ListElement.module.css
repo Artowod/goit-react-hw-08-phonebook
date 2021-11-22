@@ -1,6 +1,19 @@
 .delete {
-  display: inline-block;
-  margin: 0 5px;
-  max-height: 20px;
-  font-size: 11px;
+  margin-left: 110;
+}
+
+.element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: decimal inside;
+  padding: 3px;
+}
+
+.element:nth-child(odd) {
+  background-color: rgb(231, 231, 231);
+}
+
+.name {
+  font-weight: 700;
 }

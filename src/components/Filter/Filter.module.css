@@ -1,4 +1,9 @@
 .filterInput {
   display: block;
-  width: 150px;
+  max-width: 350px;
+}
+
+.wrapper {
+  margin-bottom: 20px;
+  max-width: var(--inner-width);
 }

@@ -1,13 +1,16 @@
 .loading {
   position: absolute;
-  top: -50px;
+  top: 50%;
   left: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
 }
 
 .wrapper {
-  padding: 10px;
-  padding-left: 20px;
-  border: 1px gray solid;
   position: relative;
-  max-width: 390px;
+  padding: 10px;
+  /* padding-left: 20px; */
+  border: 2px lightgray solid;
+  border-radius: 5px;
+  max-width: var(--inner-width);
 }

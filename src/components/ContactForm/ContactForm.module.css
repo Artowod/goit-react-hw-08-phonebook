@@ -1,13 +1,14 @@
 .contactForm {
   padding: 10px;
-  border: 1px gray solid;
-  max-width: 400px;
+  border: 2px lightgray solid;
+  border-radius: 5px;
+  max-width: var(--inner-width);
 }
 
 .labelName,
 .labelNumber {
   display: block;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nameBlock,

@@ -2,19 +2,25 @@ import PropTypes from 'prop-types';
 import s from './ListElement.module.css';
 import { connect } from 'react-redux';
 import { removeItem } from '../../../redux/operations';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ListElement = ({ name, number, deleteBtnNameAsId, deleteHandler }) => {
   return (
-    <li>
-      {name}: {number}
-      <button
+    <li className={s.element}>
+      <div>
+        <span className={s.name}>{name}:</span> {number}
+      </div>
+      <Button
         className={s.delete}
         type="button"
         name={deleteBtnNameAsId}
         onClick={deleteHandler}
+        variant="outline-danger"
+        size="sm"
       >
         Delete
-      </button>
+      </Button>
     </li>
   );
 };

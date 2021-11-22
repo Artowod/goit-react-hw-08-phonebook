@@ -2,10 +2,25 @@ import s from './Filter.module.css';
 import { connect } from 'react-redux';
 import { changeFilter } from '../../redux/actions';
 import * as selectors from '../../redux/selectors';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Filter = ({ value, filterHandler }) => {
   return (
-    <div>
+    <InputGroup size="lg" className={s.wrapper}>
+      <InputGroup.Text id="inputGroup-sizing-default">
+        Find contacts by name
+      </InputGroup.Text>
+      <FormControl
+        aria-label="Default"
+        aria-describedby="inputGroup-sizing-default"
+        value={value}
+        onChange={filterHandler}
+      />
+    </InputGroup>
+
+    /*     <div className={s.wrapper}>
       Find contacts by name
       <input
         className={s.filterInput}
@@ -13,7 +28,7 @@ const Filter = ({ value, filterHandler }) => {
         value={value}
         onChange={filterHandler}
       ></input>
-    </div>
+    </div> */
   );
 };
 

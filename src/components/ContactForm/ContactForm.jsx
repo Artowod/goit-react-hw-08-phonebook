@@ -6,8 +6,12 @@ import s from './ContactForm.module.css';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/operations';
 import * as selectors from '../../redux/selectors';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ContactForm = ({ items, addNewContact }) => {
+const ContactForm = ({ items, addNewContact, isLoaderActive }) => {
   const labelNameId = uuidv4();
   const labelNumberId = uuidv4();
 
@@ -70,32 +74,55 @@ const ContactForm = ({ items, addNewContact }) => {
     setNumber('');
   };
 
+  const addBtnActiveMarkup = () => {
+    return (
+      <Button variant="outline-primary" type="submit">
+        Add contact{' '}
+      </Button>
+    );
+  };
+
+  const addBtnInactiveMarkup = () => {
+    return (
+      <Button variant="outline-primary" type="submit" disabled>
+        Add contact{' '}
+      </Button>
+    );
+  };
+
   return (
     <form className={s.contactForm} onSubmit={handleFormSubmit}>
       <div className={s.nameBlock}>
-        <label htmlFor={labelNameId} className={s.labelName}>
-          Name
-        </label>
-        <input
-          value={name}
-          required
-          {...inputNameProps}
-          onChange={handleInput}
-        />
+        <InputGroup size="lg" className="mb-3">
+          <InputGroup.Text id="inputGroup-sizing-default">
+            Contact Name
+          </InputGroup.Text>
+          <FormControl
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            value={name}
+            required
+            {...inputNameProps}
+            onChange={handleInput}
+          />
+        </InputGroup>
       </div>
       <div className={s.numberBlock}>
-        <label htmlFor={labelNumberId} className={s.labelNumber}>
-          Number
-        </label>
-
-        <input
-          value={number}
-          required
-          {...inputNumberProps}
-          onChange={handleInput}
-        />
+        <InputGroup size="lg" className="mb-3">
+          <InputGroup.Text id="inputGroup-sizing-default">
+            Phone Number
+          </InputGroup.Text>
+          <FormControl
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            value={number}
+            required
+            {...inputNumberProps}
+            onChange={handleInput}
+          />
+        </InputGroup>
       </div>
-      <button type="submit">Add contact </button>
+      {name && number ? addBtnActiveMarkup() : addBtnInactiveMarkup()}
     </form>
   );
 };
@@ -107,6 +134,7 @@ ContactForm.propTypes = {
 
 const mapStateToProps = state => {
   return {
+    isLoaderActive: selectors.getLoadingState(state),
     items: selectors.getItems(state),
   };
 };

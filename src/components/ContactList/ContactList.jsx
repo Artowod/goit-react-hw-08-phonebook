@@ -5,6 +5,7 @@ import { getContacts } from '../../redux/operations';
 import * as selectors from '../../redux/selectors';
 import { useEffect } from 'react';
 import s from './ContactList.module.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 const ContactList = ({ contactsList, getInitialContacts, isLoaderActive }) => {
   useEffect(() => {
@@ -14,7 +15,12 @@ const ContactList = ({ contactsList, getInitialContacts, isLoaderActive }) => {
 
   return (
     <ul className={s.wrapper}>
-      {isLoaderActive && <h2 className={s.loading}>Loading...</h2>}
+      {isLoaderActive && (
+        <h2 className={s.loading}>
+          {' '}
+          <Spinner size="lg" animation="border" variant="info" />
+        </h2>
+      )}
       {contactsList.map(({ id, name, number }) => {
         return (
           <ListElement
