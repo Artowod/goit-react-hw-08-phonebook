@@ -1,32 +1,36 @@
-import ContactForm from './components/ContactForm';
-import Filter from './components/Filter';
-import ContactList from './components/ContactList';
 import './App.css';
 import Card from 'react-bootstrap/Card';
 import s from './App.module.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UserMenu from './components/UserMenu';
+import { Route, Switch, Redirect } from 'react-router';
+import WelcomePage from './pages/WelcomePage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import ContactsPage from './pages/ContactsPage';
 const App = () => {
   return (
     <div className="App">
       <Card className={s.parentWrapper}>
         <Card.Header as="h1" className={s.mainHeader}>
           Phonebook
+          <UserMenu />
         </Card.Header>
-        <Card.Body>
-          <Card className={s.addContact}>
-            <Card.Header as="h2">Add new contact</Card.Header>
-            <Card.Body>
-              <ContactForm />
-            </Card.Body>
-          </Card>
-          <Card className={s.contacts}>
-            <Card.Header as="h2">Contacts</Card.Header>
-            <Card.Body>
-              <Filter />
-              <ContactList />
-            </Card.Body>
-          </Card>
-        </Card.Body>
+        <Switch>
+          <Route path="/" exact>
+            <WelcomePage />
+          </Route>
+          <Route path="/register" exact>
+            <RegisterPage />
+          </Route>
+          <Route path="/login" exact>
+            <LoginPage />
+          </Route>
+          <Route path="/contacts" exact>
+            <ContactsPage />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
       </Card>
     </div>
   );

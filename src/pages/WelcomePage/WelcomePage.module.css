@@ -1,0 +1,10 @@
+.welcome {
+  background-image: url(../../shared/styles/phone_back.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 400px;
+  margin: 20px;
+  font-weight: 700;
+  color: rgb(1, 107, 107);
+}

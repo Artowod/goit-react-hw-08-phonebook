@@ -14,3 +14,10 @@
   border-radius: 5px;
   max-width: var(--inner-width);
 }
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+}

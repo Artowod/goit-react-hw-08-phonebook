@@ -1,4 +1,5 @@
-.contactForm {
+.registerForm {
+  margin: 20px auto;
   padding: 10px;
   border: 2px lightgray solid;
   border-radius: 5px;
@@ -6,6 +7,11 @@
 }
 
 .nameBlock,
-.numberBlock {
+.emailBlock,
+.passwordBlock {
   margin-bottom: 20px;
+}
+
+.nameBlock {
+  text-align: center;
 }
