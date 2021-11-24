@@ -77,7 +77,7 @@ const ContactForm = ({ items, addNewContact, isLoaderActive }) => {
   const addBtnActiveMarkup = () => {
     return (
       <Button variant="outline-primary" type="submit">
-        Add contact{' '}
+        Add contact
       </Button>
     );
   };
@@ -85,7 +85,7 @@ const ContactForm = ({ items, addNewContact, isLoaderActive }) => {
   const addBtnInactiveMarkup = () => {
     return (
       <Button variant="outline-primary" type="submit" disabled>
-        Add contact{' '}
+        Add contact
       </Button>
     );
   };

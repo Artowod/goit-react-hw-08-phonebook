@@ -3,12 +3,21 @@ import Card from 'react-bootstrap/Card';
 import s from './App.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserMenu from './components/UserMenu';
-import { Route, Switch, Redirect } from 'react-router';
+import { Switch, Redirect } from 'react-router';
 import WelcomePage from './pages/WelcomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import ContactsPage from './pages/ContactsPage';
-const App = () => {
+import PublicRoute from './components/PublicRoute/';
+import PrivateRoute from './components/PrivateRoute/';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { currentUser } from './redux/authorisation/user_operations';
+const App = ({ checkCurrentUser }) => {
+  useEffect(() => {
+    checkCurrentUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="App">
       <Card className={s.parentWrapper}>
@@ -17,18 +26,18 @@ const App = () => {
           <UserMenu />
         </Card.Header>
         <Switch>
-          <Route path="/" exact>
+          <PublicRoute path="/" exact>
             <WelcomePage />
-          </Route>
-          <Route path="/register" exact>
+          </PublicRoute>
+          <PublicRoute restricted path="/register">
             <RegisterPage />
-          </Route>
-          <Route path="/login" exact>
+          </PublicRoute>
+          <PublicRoute restricted path="/login">
             <LoginPage />
-          </Route>
-          <Route path="/contacts" exact>
+          </PublicRoute>
+          <PrivateRoute path="/contacts">
             <ContactsPage />
-          </Route>
+          </PrivateRoute>
           <Redirect to="/" />
         </Switch>
       </Card>
@@ -36,4 +45,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    checkCurrentUser: () => dispatch(currentUser()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);

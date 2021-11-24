@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { useState } from 'react';
-
+import { connect } from 'react-redux';
 import s from './RegisterPage.module.css';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Card from 'react-bootstrap/esm/Card';
-const RegisterPage = () => {
+import { registerUser } from '../../redux/authorisation/user_operations';
+const RegisterPage = ({ addNewUser }) => {
   const inputNameProps = {
     type: 'text',
     name: 'name',
@@ -31,7 +32,6 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
 
   const handleInput = e => {
-    console.log(e.target.value);
     const { value, name } = e.target;
 
     switch (name) {
@@ -53,7 +53,7 @@ const RegisterPage = () => {
   const handleFormSubmit = e => {
     e.preventDefault();
     /* REQUEST TO SERVER  - POST /users/signup */
-
+    addNewUser({ name, email, password });
     /*======================================== */
     reset();
   };
@@ -115,5 +115,10 @@ const RegisterPage = () => {
     </Card>
   );
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewUser: newUser => dispatch(registerUser(newUser)),
+  };
+};
 
-export default RegisterPage;
+export default connect(null, mapDispatchToProps)(RegisterPage);

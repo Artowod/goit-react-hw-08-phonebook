@@ -11,14 +11,12 @@ import {
   removeItemError,
 } from './actions';
 
-axios.defaults.baseURL = 'http://localhost:3333';
-
 export const getContacts = () => dispatch => {
   dispatch(getContactsRequest());
   axios
     .get('/contacts')
     .then(({ data }) => dispatch(getContactsSuccess(data)))
-    .catch(error => dispatch(getContactsError(error)));
+    .catch(error => dispatch(getContactsError(error.toString())));
 };
 
 export const addItem =
@@ -35,7 +33,7 @@ export const addItem =
       .post('/contacts/', item)
       .then(({ data }) => dispatch(addItemSuccess(data)))
       .catch(error => {
-        dispatch(addItemError(error));
+        dispatch(addItemError(error.toString()));
       });
   };
 
@@ -46,6 +44,6 @@ export const removeItem = id => dispatch => {
     .delete(`/contacts/${id}`)
     .then(() => dispatch(removeItemSuccess(id)))
     .catch(error => {
-      dispatch(removeItemError(error));
+      dispatch(removeItemError(error.toString()));
     });
 };

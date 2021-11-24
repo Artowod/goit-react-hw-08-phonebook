@@ -3,11 +3,14 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { useState } from 'react';
-
+import { connect } from 'react-redux';
 import s from './LoginPage.module.css';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Card from 'react-bootstrap/esm/Card';
-const LoginPage = () => {
+import { loginUser } from '../../redux/authorisation/user_operations';
+import userSelectors from '../../redux/authorisation/user_selectors';
+
+const LoginPage = ({ loginExistingUser, isLoggedIn }) => {
   const inputEmailProps = {
     type: 'email',
     name: 'email',
@@ -22,7 +25,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const handleInput = e => {
-    console.log(e.target.value);
     const { value, name } = e.target;
 
     switch (name) {
@@ -40,8 +42,8 @@ const LoginPage = () => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    /* REQUEST TO SERVER  - POST /users/signup */
-
+    /*----------- REQUEST TO SERVER------------*/
+    loginExistingUser({ email, password });
     /*======================================== */
     reset();
   };
@@ -82,6 +84,7 @@ const LoginPage = () => {
       </InputGroup>
     );
   };
+
   return (
     <Card>
       <CardHeader as="h4">Login form</CardHeader>
@@ -98,4 +101,16 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: userSelectors.getIsLoggedIn(state),
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginExistingUser: existingUser => dispatch(loginUser(existingUser)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

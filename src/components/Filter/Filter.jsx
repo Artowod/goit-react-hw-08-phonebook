@@ -19,16 +19,6 @@ const Filter = ({ value, filterHandler }) => {
         onChange={filterHandler}
       />
     </InputGroup>
-
-    /*     <div className={s.wrapper}>
-      Find contacts by name
-      <input
-        className={s.filterInput}
-        type="text"
-        value={value}
-        onChange={filterHandler}
-      ></input>
-    </div> */
   );
 };
 

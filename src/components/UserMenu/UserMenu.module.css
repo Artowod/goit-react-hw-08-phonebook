@@ -10,7 +10,8 @@
   list-style: none;
 }
 
-.buttonsBlock li {
+.buttonsBlock li,
+.privateBtns li {
   margin: 5px;
 }
 
@@ -18,4 +19,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.navLink {
+  display: inline-block;
+  border: 1px lightblue solid;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: right;
+  width: 120px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.privateLinks {
+  list-style: none;
 }
